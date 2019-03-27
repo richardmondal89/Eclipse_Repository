@@ -1,0 +1,1379 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE ViewObject SYSTEM "jbo_03_01.dtd">
+<!---->
+<ViewObject
+  xmlns="http://xmlns.oracle.com/bc4j"
+  Name="GroupCriteriaVO"
+  Version="11.1.1.69.12"
+  SelectList="GroupCriteriaEO.BOOL_OPER_CD, 
+       GroupCriteriaEO.CREATED_BY, 
+       GroupCriteriaEO.CREATION_DATE, 
+       GroupCriteriaEO.CRITERIA_ID, 
+       GroupCriteriaEO.CRITERIA_NAME, 
+       GroupCriteriaEO.ENTERPRISE_ID, 
+       GroupCriteriaEO.GRP_CRITERIA_ID, 
+       GroupCriteriaEO.GRP_ID, 
+       GroupCriteriaEO.LAST_UPDATE_DATE, 
+       GroupCriteriaEO.LAST_UPDATE_LOGIN, 
+       GroupCriteriaEO.LAST_UPDATED_BY, 
+       GroupCriteriaEO.LEFT_PARAM_NUM, 
+       GroupCriteriaEO.OBJECT_VERSION_NUMBER, 
+       GroupCriteriaEO.OPERATOR_ID, 
+       GroupCriteriaEO.OPERATOR_NAME, 
+       GroupCriteriaEO.ORDR_NUM, 
+       GroupCriteriaEO.RIGHT_PARAM_NUM, 
+       GroupCriteriaEO.VALUE_CHAR, 
+       GroupCriteriaEO.VALUE_DATE, 
+       GroupCriteriaEO.VALUE_NUMBER, 
+       GroupCriteriaEO.VALUE_TS, 
+       GroupCriteriaEO.CRITERIA_DISPLAY_NAME, 
+       Crit.NAME, 
+       Crit.MX_INPUT_PARAM_ID, 
+       Oper.NAME AS NAME1, 
+       Oper.MX_INPUT_PARAM_ID AS MX_INPUT_PARAM_ID1, 
+       Crit.DATA_TYPE_CD, 
+       Crit.LOV_SWITCHER_CD, 
+       Crit.VIEW_ATTRIBUTE_NAME, 
+       Crit.INPUT_VALUE, 
+       Crit.NODE_GROUP_NAME, 
+       Crit.NODE_GROUP_VALUE, 
+       Oper.INPUT_VALUE AS INPUT_VALUE1, 
+       Oper.NODE_GROUP_NAME AS NODE_GROUP_NAME1, 
+       Oper.NODE_GROUP_VALUE AS NODE_GROUP_VALUE1"
+  FromList="HWM_GRP_CRITERIA GroupCriteriaEO, ANC_MX_INPUT_PARAMS_VL Crit, ANC_MX_INPUT_PARAMS_VL Oper"
+  BindingStyle="OracleName"
+  CustomQuery="false"
+  RowClass="oracle.apps.hcm.groups.protectedModel.view.GroupCriteriaVORowImpl"
+  ComponentClass="oracle.apps.hcm.common.core.HcmViewObjectImpl"
+  DefClass="oracle.apps.hcm.common.core.HcmViewDefImpl"
+  PageIterMode="Full"
+  UseGlueCode="false"
+  OrderBy="GroupCriteriaEO.ORDR_NUM"
+  Where="GroupCriteriaEO.CRITERIA_ID = Crit.MX_INPUT_PARAM_ID and GroupCriteriaEO.OPERATOR_ID = Oper.MX_INPUT_PARAM_ID"
+  InheritPersonalization="merge">
+  <DesignTime>
+    <Attr Name="_codeGenFlag2" Value="Access"/>
+    <Attr Name="_isCodegen" Value="true"/>
+  </DesignTime>
+  
+  <Variable
+    Name="pGroupId"
+    Kind="viewcriteria"
+    Type="java.lang.String"/>
+  <ViewAccessor
+    Name="PersonLovPVO"
+    ViewObjectName="oracle.apps.hcm.people.core.publicView.PersonLovPVO">
+    <ViewCriteriaUsage
+      Name="FNDDS__PER_CHOOSE_PUBLIC_PERSON_DATA__PER_PERSONS__QRSLT"
+      FullName="oracle.apps.hcm.people.core.publicView.PersonLovPVO.FNDDS__PER_CHOOSE_PUBLIC_PERSON_DATA__PER_PERSONS__QRSLT"/>
+    <ParameterMap>
+      <PIMap Variable="pEffectiveDate">
+        <TransientExpression><![CDATA[new java.sql.Date(new java.util.Date().getTime());]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="PersonTypePVO"
+    ViewObjectName="oracle.apps.hcm.people.setup.publicView.PersonTypePVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="FNDDS__PER_CHOOSE_PERSON_TYPE_DATA__PER_PERSON_TYPES__PersonTypePEO"
+      FullName="oracle.apps.hcm.people.setup.publicView.PersonTypePVO.FNDDS__PER_CHOOSE_PERSON_TYPE_DATA__PER_PERSON_TYPES__PersonTypePEO"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="OperatorsVO"
+    ViewObjectName="oracle.apps.hcm.groups.protectedModel.view.OperatorsVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="OperatorsBooleanVO"
+    ViewObjectName="oracle.apps.hcm.groups.protectedModel.view.OperatorsBooleanVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="OperatorEqNeqVO"
+    ViewObjectName="oracle.apps.hcm.groups.protectedModel.view.OperatorEqNeqVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="JobPVO"
+    ViewObjectName="oracle.apps.hcm.workStructures.jobs.publicView.JobPVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="FNDDS__PER_CHOOSE_HR_JOB_DATA__PER_JOBS_F__JobDPEO"
+      FullName="oracle.apps.hcm.workStructures.jobs.publicView.JobPVO.FNDDS__PER_CHOOSE_HR_JOB_DATA__PER_JOBS_F__JobDPEO"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="JobFamilyPVO"
+    ViewObjectName="oracle.apps.hcm.workStructures.jobs.publicView.JobFamilyPVO"
+    RowLevelBinds="true"/>
+  <ViewAccessor
+    Name="PositionPVO"
+    ViewObjectName="oracle.apps.hcm.workStructures.positions.publicView.PositionPVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="FNDDS__PER_CHOOSE_POSITION_DATA__HR_ALL_POSITIONS_F__PositionDPEO"
+      FullName="oracle.apps.hcm.workStructures.positions.publicView.PositionPVO.FNDDS__PER_CHOOSE_POSITION_DATA__HR_ALL_POSITIONS_F__PositionDPEO"/>
+    <ViewCriteriaUsage
+      Name="SearchByName"
+      FullName="oracle.apps.hcm.workStructures.positions.publicView.PositionPVO.SearchByName"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="GradePVO"
+    ViewObjectName="oracle.apps.hcm.workStructures.grades.publicView.GradePVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="FNDDS__PER_CHOOSE_ASSIGNMENT_GRADE_DATA__PER_GRADES_F__GradeDPEO"
+      FullName="oracle.apps.hcm.workStructures.grades.publicView.GradePVO.FNDDS__PER_CHOOSE_ASSIGNMENT_GRADE_DATA__PER_GRADES_F__GradeDPEO"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="DepartmentPVO"
+    ViewObjectName="oracle.apps.hcm.organizations.publicView.DepartmentPVO"
+    RowLevelBinds="true">
+    <ViewCriteriaUsage
+      Name="FNDDS__PER_CHOOSE_DEPARTMENT_DATA__HR_ALL_ORGANIZATION_UNITS_F__DepartmentDPEO"
+      FullName="oracle.apps.hcm.organizations.publicView.DepartmentPVO.FNDDS__PER_CHOOSE_DEPARTMENT_DATA__HR_ALL_ORGANIZATION_UNITS_F__DepartmentDPEO"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="Gender_YesNo"
+    ViewObjectName="oracle.apps.hcm.common.core.publicView.HcmLookupPVO"
+    AMUsageName="HcmCommonSharedAM"
+    ViewInstanceName="PerSex">
+    <ViewCriteriaUsage
+      Name="ListAccessorInternal"
+      FullName="oracle.apps.hcm.common.core.publicView.HcmLookupPVO.ListAccessorInternal"/>
+    <ParameterMap>
+      <PIMap Variable="LookupTypeBindVar">
+        <TransientExpression><![CDATA['SEX']]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="IsManager_YesNo"
+    ViewObjectName="oracle.apps.hcm.common.core.publicView.HcmLookupPVO"
+    AMUsageName="HcmCommonSharedAM"
+    ViewInstanceName="YesNo">
+    <ViewCriteriaUsage
+      Name="ListAccessorInternal"
+      FullName="oracle.apps.hcm.common.core.publicView.HcmLookupPVO.ListAccessorInternal"/>
+    <ParameterMap>
+      <PIMap Variable="LookupTypeBindVar">
+        <TransientExpression><![CDATA['YES_NO']]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="AssignmentStatus_YesNo"
+    ViewObjectName="oracle.apps.hcm.common.core.publicView.HcmLookupPVO"
+    AMUsageName="HcmCommonSharedAM"
+    ViewInstanceName="PayAssSysStatus">
+    <ParameterMap>
+      <PIMap Variable="LookupTypeBindVar">
+        <TransientExpression><![CDATA['PER_ASS_SYS_STATUS']]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="AssignmentType_YesNo"
+    ViewObjectName="oracle.apps.hcm.common.core.publicView.HcmLookupPVO"
+    AMUsageName="HcmCommonSharedAM"
+    ViewInstanceName="BenAsgnTyp">
+    <ParameterMap>
+      <PIMap Variable="LookupTypeBindVar">
+        <TransientExpression><![CDATA['PER_PERIOD_TYPE']]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="MarritalStatus_YesNo"
+    ViewObjectName="oracle.apps.hcm.common.core.publicView.HcmLookupPVO"
+    AMUsageName="HcmCommonSharedAM"
+    ViewInstanceName="PerMaritalStatus">
+    <ParameterMap>
+      <PIMap Variable="LookupTypeBindVar">
+        <TransientExpression><![CDATA['MAR_STATUS']]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="OrganizationPVO_BU"
+    ViewObjectName="oracle.apps.hcm.organizations.publicView.OrganizationPVO">
+    <ViewCriteriaUsage
+      Name="findByClassificationAndIntExtFlag"
+      FullName="oracle.apps.hcm.organizations.publicView.OrganizationPVO.findByClassificationAndIntExtFlag"/>
+    <ParameterMap>
+      <PIMap Variable="pClassificationCode">
+        <TransientExpression><![CDATA['FUN_BUSINESS_UNIT']]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="pInternalExternal">
+        <TransientExpression><![CDATA['INT']]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="pStatus">
+        <TransientExpression><![CDATA['A']]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="OrganizationPVO_LE"
+    ViewObjectName="oracle.apps.hcm.organizations.publicView.OrganizationPVO">
+    <ViewCriteriaUsage
+      Name="findByClassificationAndIntExtFlag"
+      FullName="oracle.apps.hcm.organizations.publicView.OrganizationPVO.findByClassificationAndIntExtFlag"/>
+    <ParameterMap>
+      <PIMap Variable="pClassificationCode">
+        <TransientExpression><![CDATA['HCM_LEMP']]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="pInternalExternal">
+        <TransientExpression><![CDATA['INT']]></TransientExpression>
+      </PIMap>
+      <PIMap Variable="pStatus">
+        <TransientExpression><![CDATA['A']]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="EmploymentCategory_YesNo"
+    ViewObjectName="oracle.apps.hcm.common.core.publicView.HcmLookupPVO"
+    AMUsageName="HcmCommonSharedAM"
+    ViewInstanceName="PerEmpCatLookup">
+    <ViewCriteriaUsage
+      Name="ListAccessorInternal"
+      FullName="oracle.apps.hcm.common.core.publicView.HcmLookupPVO.ListAccessorInternal"/>
+    <ParameterMap>
+      <PIMap Variable="LookupTypeBindVar">
+        <TransientExpression><![CDATA['EMP_CAT']]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="AsgnLookupVO"
+    ViewObjectName="oracle.apps.hcm.groups.protectedModel.view.AsgnLookupVO">
+    <ViewCriteriaUsage
+      Name="findByMeaning"
+      FullName="oracle.apps.hcm.common.core.publicView.HcmLookupPVO.findByMeaning"/>
+    <ParameterMap>
+      <PIMap Variable="LookupTypeBindVar">
+        <TransientExpression><![CDATA['PER_PERIOD_TYPE']]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="LocationLovPVO"
+    ViewObjectName="oracle.apps.hcm.locations.publicView.LocationLovPVO"
+    RowLevelBinds="true"
+    FetchSize="15">
+    <ViewCriteriaUsage
+      Name="ActiveLocations"
+      FullName="oracle.apps.hcm.locations.publicView.LocationLovPVO.ActiveLocations"/>
+    <ViewCriteriaUsage
+      Name="FNDDS__PER_CHOOSE_LOCATION_DATA__PER_LOCATIONS__LocationDPEO"
+      FullName="oracle.apps.hcm.locations.publicView.LocationLovPVO.FNDDS__PER_CHOOSE_LOCATION_DATA__PER_LOCATIONS__LocationDPEO"/>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="HcmCommonSharedAM_PerHourlySalariedCodeLookup"
+    ViewObjectName="oracle.apps.hcm.common.core.publicView.HcmLookupPVO"
+    AMUsageName="HcmCommonSharedAM"
+    ViewInstanceName="PerHourlySalariedCodeLookup">
+    <ViewCriteriaUsage
+      Name="ListAccessorInternal"
+      FullName="oracle.apps.hcm.common.core.publicView.HcmLookupPVO.ListAccessorInternal"/>
+    <ParameterMap>
+      <PIMap Variable="LookupTypeBindVar">
+        <TransientExpression><![CDATA['HOURLY_SALARIED_CODE']]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ViewAccessor
+    Name="PayrollLovVO"
+    ViewObjectName="oracle.apps.hcm.groups.protectedModel.view.PayrollLovVO">
+    <ViewCriteriaUsage
+      Name="FNDDS__PAY_CHOOSE_PAYROLL_DATA__PAY_ALL_PAYROLLS_F__PayrollDPEO"
+      FullName="oracle.apps.hcm.groups.protectedModel.view.PayrollLovVO.FNDDS__PAY_CHOOSE_PAYROLL_DATA__PAY_ALL_PAYROLLS_F__PayrollDPEO"/>
+    <ViewCriteriaUsage
+      Name="findByName"
+      FullName="oracle.apps.hcm.groups.protectedModel.view.PayrollLovVO.findByName"/>
+    <ParameterMap>
+      <PIMap Variable="pEffectiveDate">
+        <TransientExpression><![CDATA[new java.sql.Date(new java.util.Date().getTime());]]></TransientExpression>
+      </PIMap>
+    </ParameterMap>
+  </ViewAccessor>
+  <ListBinding
+    Name="LOV_InputPersonType"
+    ListVOName="PersonTypePVO"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="InputPersonType"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueNumber"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="UserPersonType"/>
+      <Item Value="PersonTypeId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="UserPersonType"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_InputFullName"
+    ListVOName="PersonLovPVO"
+    ListRangeSize="10"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="InputFullName"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueNumber"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="DisplayName"/>
+      <Item Value="PersonId"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="DisplayName"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="findByName"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_InputOperator"
+    ListVOName="OperatorsVO"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="InputOperator"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="OperatorId"/>
+      <Item Value="OperatorName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Name"/>
+      <Item Value="MxInputParamId"/>
+      <Item Value="Name"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Name"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_InputOperatorBoolean"
+    ListVOName="OperatorEqNeqVO"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="InputOperatorBoolean"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="OperatorId"/>
+      <Item Value="OperatorName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Name"/>
+      <Item Value="MxInputParamId"/>
+      <Item Value="Name"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Name"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_FullName"
+    ListVOName="PersonLovPVO"
+    ListRangeSize="10"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueNumber"/>
+      <Item Value="CriteriaDisplayName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="DisplayName"/>
+      <Item Value="PersonId"/>
+      <Item Value="DisplayName"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="ListName"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="findByName"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_PersonType"
+    ListVOName="PersonTypePVO"
+    ListRangeSize="10"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueNumber"/>
+      <Item Value="CriteriaDisplayName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="UserPersonType"/>
+      <Item Value="PersonTypeId"/>
+      <Item Value="UserPersonType"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="UserPersonType"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_BoolOperCd"
+    ListVOName="OperatorsBooleanVO"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="BoolOperCd"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="InputValue"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Name"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_OperatorEqNeq"
+    ListVOName="OperatorEqNeqVO"
+    ListRangeSize="-1"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="OperatorDisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="OperatorId"/>
+      <Item Value="OperatorName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Name"/>
+      <Item Value="MxInputParamId"/>
+      <Item Value="Name"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Name"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Operators"
+    ListVOName="OperatorsVO"
+    ListRangeSize="25"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="OperatorDisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="OperatorId"/>
+      <Item Value="OperatorName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Name"/>
+      <Item Value="MxInputParamId"/>
+      <Item Value="Name"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Name"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Position"
+    ListVOName="PositionPVO"
+    ListRangeSize="10"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueNumber"/>
+      <Item Value="CriteriaDisplayName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Name"/>
+      <Item Value="PositionId"/>
+      <Item Value="Name"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Name"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_JobName"
+    ListVOName="JobPVO"
+    ListRangeSize="10"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueNumber"/>
+      <Item Value="CriteriaDisplayName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Name"/>
+      <Item Value="JobId"/>
+      <Item Value="Name"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Name"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Grade"
+    ListVOName="GradePVO"
+    ListRangeSize="25"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueNumber"/>
+      <Item Value="CriteriaDisplayName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Name"/>
+      <Item Value="GradeId"/>
+      <Item Value="Name"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Name"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_JobFamily"
+    ListVOName="JobFamilyPVO"
+    ListRangeSize="25"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueNumber"/>
+      <Item Value="CriteriaDisplayName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="JobFamilyName"/>
+      <Item Value="JobFamilyId"/>
+      <Item Value="JobFamilyName"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="JobFamilyName"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Department"
+    ListVOName="DepartmentPVO"
+    ListRangeSize="25"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueNumber"/>
+      <Item Value="CriteriaDisplayName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Name"/>
+      <Item Value="OrganizationId"/>
+      <Item Value="Name"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Name"/>
+    </AttrArray>
+    <DisplayCriteria/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Gender"
+    ListVOName="Gender_YesNo"
+    ListRangeSize="25"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueChar"/>
+      <Item Value="CriteriaDisplayName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Meaning"/>
+      <Item Value="LookupCode"/>
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="findByMeaning"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_AssignmentStatus"
+    ListVOName="AssignmentStatus_YesNo"
+    ListRangeSize="25"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueChar"/>
+      <Item Value="CriteriaDisplayName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Meaning"/>
+      <Item Value="LookupCode"/>
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="findByMeaning"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_AssignmentType"
+    ListVOName="AsgnLookupVO"
+    ListRangeSize="25"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueChar"/>
+      <Item Value="CriteriaDisplayName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Meaning"/>
+      <Item Value="LookupCode"/>
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="findByMeaning"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_IsMgrPrAssgn"
+    ListVOName="IsManager_YesNo"
+    ListRangeSize="25"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueChar"/>
+      <Item Value="CriteriaDisplayName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Meaning"/>
+      <Item Value="LookupCode"/>
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="findByMeaning"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_MaritalStatus"
+    ListVOName="MarritalStatus_YesNo"
+    ListRangeSize="25"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueChar"/>
+      <Item Value="CriteriaDisplayName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Meaning"/>
+      <Item Value="LookupCode"/>
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="findByMeaning"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_BusinessUnit"
+    ListVOName="OrganizationPVO_BU"
+    ListRangeSize="25"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueNumber"/>
+      <Item Value="CriteriaDisplayName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Name"/>
+      <Item Value="OrganizationId"/>
+      <Item Value="Name"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Name"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="findByNameAndClassification"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_LegalEntity"
+    ListVOName="OrganizationPVO_LE"
+    ListRangeSize="25"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueNumber"/>
+      <Item Value="CriteriaDisplayName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Name"/>
+      <Item Value="OrganizationId"/>
+      <Item Value="Name"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Name"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="findByNameAndClassification"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_EmploymentCategory"
+    ListVOName="EmploymentCategory_YesNo"
+    ListRangeSize="25"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueChar"/>
+      <Item Value="CriteriaDisplayName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Meaning"/>
+      <Item Value="LookupCode"/>
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="findByMeaning"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Location"
+    ListVOName="LocationLovPVO"
+    ListRangeSize="10"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueNumber"/>
+      <Item Value="CriteriaDisplayName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="LocationName"/>
+      <Item Value="LocationId"/>
+      <Item Value="LocationName"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="LocationName"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="LocationLOVSearch"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_HourlySalaried"
+    ListVOName="HcmCommonSharedAM_PerHourlySalariedCodeLookup"
+    ListRangeSize="10"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueChar"/>
+      <Item Value="CriteriaDisplayName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="Meaning"/>
+      <Item Value="LookupCode"/>
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="Meaning"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="findByMeaning"/>
+  </ListBinding>
+  <ListBinding
+    Name="LOV_Payroll"
+    ListVOName="PayrollLovVO"
+    ListRangeSize="10"
+    NullValueFlag="start"
+    NullValueId="${adfBundle['oracle.javatools.resourcebundle.SystemBundle']['NULL_VALUE_RESID']}"
+    MRUCount="0">
+    <AttrArray Name="AttrNames">
+      <Item Value="DisplayValue"/>
+    </AttrArray>
+    <AttrArray Name="DerivedAttrNames">
+      <Item Value="ValueNumber"/>
+      <Item Value="CriteriaDisplayName"/>
+    </AttrArray>
+    <AttrArray Name="ListAttrNames">
+      <Item Value="PayrollLdgName"/>
+      <Item Value="PayrollId"/>
+      <Item Value="PayrollLdgName"/>
+    </AttrArray>
+    <AttrArray Name="ListDisplayAttrNames">
+      <Item Value="PayrollLdgName"/>
+    </AttrArray>
+    <DisplayCriteria
+      Name="findByName"/>
+  </ListBinding>
+  <EntityUsage
+    Name="GroupCriteriaEO"
+    Entity="oracle.apps.hcm.groups.protectedModel.entity.GroupCriteriaEO"/>
+  <EntityUsage
+    Name="Crit"
+    Entity="oracle.apps.hcm.configMatrix.core.publicEntity.ConfigMtxInputParamPEO"
+    SourceUsage="oracle.apps.hcm.groups.protectedModel.view.GroupCriteriaVO.GroupCriteriaEO"
+    ReadOnly="true"
+    Reference="true"
+    DeleteParticipant="false"/>
+  <EntityUsage
+    Name="Oper"
+    Entity="oracle.apps.hcm.configMatrix.core.publicEntity.ConfigMtxInputParamPEO"
+    SourceUsage="oracle.apps.hcm.groups.protectedModel.view.GroupCriteriaVO.Crit"
+    ReadOnly="true"
+    Reference="true"
+    DeleteParticipant="false"/>
+  <ViewAttribute
+    Name="BoolOperCd"
+    PrecisionRule="true"
+    EntityAttrName="BoolOperCd"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="BOOL_OPER_CD"
+    LOVName="LOV_BoolOperCd">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="CreatedBy"
+    IsUpdateable="false"
+    PrecisionRule="true"
+    EntityAttrName="CreatedBy"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="CREATED_BY"/>
+  <ViewAttribute
+    Name="CreationDate"
+    IsUpdateable="false"
+    PrecisionRule="true"
+    EntityAttrName="CreationDate"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="CREATION_DATE"/>
+  <ViewAttribute
+    Name="CriteriaId"
+    PrecisionRule="true"
+    EntityAttrName="CriteriaId"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="CRITERIA_ID"/>
+  <ViewAttribute
+    Name="CriteriaName"
+    PrecisionRule="true"
+    EntityAttrName="CriteriaName"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="CRITERIA_NAME"/>
+  <ViewAttribute
+    Name="EnterpriseId"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="EnterpriseId"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="ENTERPRISE_ID"/>
+  <ViewAttribute
+    Name="GrpCriteriaId"
+    PrecisionRule="true"
+    EntityAttrName="GrpCriteriaId"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="GRP_CRITERIA_ID"/>
+  <ViewAttribute
+    Name="GrpId"
+    PrecisionRule="true"
+    EntityAttrName="GrpId"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="GRP_ID"/>
+  <ViewAttribute
+    Name="LastUpdateDate"
+    IsUpdateable="false"
+    PrecisionRule="true"
+    EntityAttrName="LastUpdateDate"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="LAST_UPDATE_DATE"/>
+  <ViewAttribute
+    Name="LastUpdateLogin"
+    IsUpdateable="false"
+    PrecisionRule="true"
+    EntityAttrName="LastUpdateLogin"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="LAST_UPDATE_LOGIN"/>
+  <ViewAttribute
+    Name="LastUpdatedBy"
+    IsUpdateable="false"
+    PrecisionRule="true"
+    EntityAttrName="LastUpdatedBy"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="LAST_UPDATED_BY"/>
+  <ViewAttribute
+    Name="LeftParamNum"
+    PrecisionRule="true"
+    EntityAttrName="LeftParamNum"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="LEFT_PARAM_NUM"/>
+  <ViewAttribute
+    Name="ObjectVersionNumber"
+    IsUpdateable="false"
+    PrecisionRule="true"
+    EntityAttrName="ObjectVersionNumber"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="OBJECT_VERSION_NUMBER"/>
+  <ViewAttribute
+    Name="OperatorId"
+    PrecisionRule="true"
+    EntityAttrName="OperatorId"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="OPERATOR_ID"/>
+  <ViewAttribute
+    Name="OperatorName"
+    PrecisionRule="true"
+    EntityAttrName="OperatorName"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="OPERATOR_NAME"/>
+  <ViewAttribute
+    Name="OrdrNum"
+    PrecisionRule="true"
+    EntityAttrName="OrdrNum"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="ORDR_NUM"/>
+  <ViewAttribute
+    Name="RightParamNum"
+    PrecisionRule="true"
+    EntityAttrName="RightParamNum"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="RIGHT_PARAM_NUM"/>
+  <ViewAttribute
+    Name="ValueChar"
+    PrecisionRule="true"
+    EntityAttrName="ValueChar"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="VALUE_CHAR"/>
+  <ViewAttribute
+    Name="ValueDate"
+    PrecisionRule="true"
+    EntityAttrName="ValueDate"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="VALUE_DATE"/>
+  <ViewAttribute
+    Name="ValueNumber"
+    PrecisionRule="true"
+    EntityAttrName="ValueNumber"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="VALUE_NUMBER"/>
+  <ViewAttribute
+    Name="ValueTs"
+    PrecisionRule="true"
+    EntityAttrName="ValueTs"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="VALUE_TS"/>
+  <ViewAttribute
+    Name="CriteriaDisplayName"
+    PrecisionRule="true"
+    EntityAttrName="CriteriaDisplayName"
+    EntityUsage="GroupCriteriaEO"
+    AliasName="CRITERIA_DISPLAY_NAME"/>
+  <ViewAttribute
+    Name="LeftParenthesis"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="RightParenthesis"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="InputPersonType"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"
+    LOVName="LOV_InputPersonType"
+    Passivate="true">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="InputFullName"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"
+    LOVName="LOV_InputFullName"
+    Passivate="true">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="input_text_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="InputOperator"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"
+    LOVName="LOV_InputOperator"
+    Passivate="true">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="InputOperatorBoolean"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"
+    LOVName="LOV_InputOperatorBoolean"
+    Passivate="true">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="DisplayValue"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    Passivate="true"
+    SQLType="VARCHAR"
+    LOVName="LOV_Grade"
+    LOVFinder="SwitcherDisplayValue">
+    <RecalcCondition><![CDATA[true]]></RecalcCondition>
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="combo_lov"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SwitcherDisplayValue"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    Passivate="true"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="OperatorDisplayValue"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    Passivate="true"
+    SQLType="VARCHAR"
+    LOVName="LOV_OperatorEqNeq"
+    LOVFinder="SwitcherOperatorDisplayValue">
+    <Properties>
+      <SchemaBasedProperties>
+        <CONTROLTYPE
+          Value="choice"/>
+      </SchemaBasedProperties>
+    </Properties>
+  </ViewAttribute>
+  <ViewAttribute
+    Name="SwitcherOperatorDisplayValue"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    Passivate="true"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="Name"
+    PrecisionRule="true"
+    EntityAttrName="Name"
+    EntityUsage="Crit"
+    AliasName="NAME"/>
+  <ViewAttribute
+    Name="MxInputParamId"
+    IsUpdateable="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="MxInputParamId"
+    EntityUsage="Crit"
+    AliasName="MX_INPUT_PARAM_ID"/>
+  <ViewAttribute
+    Name="Name1"
+    PrecisionRule="true"
+    EntityAttrName="Name"
+    EntityUsage="Oper"
+    AliasName="NAME1"/>
+  <ViewAttribute
+    Name="MxInputParamId1"
+    IsUpdateable="false"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="MxInputParamId"
+    EntityUsage="Oper"
+    AliasName="MX_INPUT_PARAM_ID1"/>
+  <ViewAttribute
+    Name="DataTypeCd"
+    PrecisionRule="true"
+    EntityAttrName="DataTypeCd"
+    EntityUsage="Crit"
+    AliasName="DATA_TYPE_CD"/>
+  <ViewAttribute
+    Name="LovSwitcherCd"
+    PrecisionRule="true"
+    EntityAttrName="LovSwitcherCd"
+    EntityUsage="Crit"
+    AliasName="LOV_SWITCHER_CD"/>
+  <ViewAttribute
+    Name="ViewAttributeName"
+    PrecisionRule="true"
+    EntityAttrName="ViewAttributeName"
+    EntityUsage="Crit"
+    AliasName="VIEW_ATTRIBUTE_NAME"/>
+  <ViewAttribute
+    Name="CriteriaItemDisplay"
+    IsSelected="false"
+    IsQueriable="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    Passivate="true"
+    SQLType="VARCHAR"/>
+  <ViewAttribute
+    Name="InputValue"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="InputValue"
+    EntityUsage="Crit"
+    AliasName="INPUT_VALUE"/>
+  <ViewAttribute
+    Name="NodeGroupName"
+    PrecisionRule="true"
+    EntityAttrName="NodeGroupName"
+    EntityUsage="Crit"
+    AliasName="NODE_GROUP_NAME"/>
+  <ViewAttribute
+    Name="NodeGroupValue"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="NodeGroupValue"
+    EntityUsage="Crit"
+    AliasName="NODE_GROUP_VALUE"/>
+  <ViewAttribute
+    Name="InputValue1"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="InputValue"
+    EntityUsage="Oper"
+    AliasName="INPUT_VALUE1"/>
+  <ViewAttribute
+    Name="NodeGroupName1"
+    PrecisionRule="true"
+    EntityAttrName="NodeGroupName"
+    EntityUsage="Oper"
+    AliasName="NODE_GROUP_NAME1"/>
+  <ViewAttribute
+    Name="NodeGroupValue1"
+    IsNotNull="true"
+    PrecisionRule="true"
+    EntityAttrName="NodeGroupValue"
+    EntityUsage="Oper"
+    AliasName="NODE_GROUP_VALUE1"/>
+  <ViewAttribute
+    Name="IsLastRow"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.String"
+    ColumnType="VARCHAR2"
+    AliasName="VIEW_ATTR"
+    SQLType="VARCHAR"
+    DefaultValue="N"
+    Passivate="true"/>
+  <ViewAttribute
+    Name="isOperatorMissing"
+    IsSelected="false"
+    IsPersistent="false"
+    PrecisionRule="true"
+    Type="java.lang.Boolean"
+    ColumnType="NUMBER"
+    AliasName="VIEW_ATTR"
+    SQLType="BIT"
+    DefaultValue="false"
+    Passivate="true"/>
+  <ViewCriteria
+    Name="findByGroupId"
+    ViewObjectName="oracle.apps.hcm.groups.protectedModel.view.GroupCriteriaVO"
+    Conjunction="AND">
+    <Properties Name="_Props">
+      <CustomProperties>
+        <Property
+          Name="displayOperators"
+          Value="InAdvancedMode"/>
+        <Property
+          Name="autoExecute"
+          Value="false"/>
+        <Property
+          Name="allowConjunctionOverride"
+          Value="true"/>
+        <Property
+          Name="showInList"
+          Value="true"/>
+        <Property
+          Name="mode"
+          Value="Basic"/>
+      </CustomProperties>
+    </Properties>
+    <ViewCriteriaRow
+      Name="vcrow125"
+      UpperColumns="1">
+      <ViewCriteriaItem
+        Name="GrpId"
+        ViewAttribute="GrpId"
+        Operator="="
+        Conjunction="AND"
+        Value=":pGroupId"
+        GenerateIsNullClauseForBindVars="false"
+        IsBindVarValue="true"
+        Required="Optional"/>
+    </ViewCriteriaRow>
+  </ViewCriteria>
+  <AttrArray Name="KeyAttributes">
+    <Item Value="GrpCriteriaId"/>
+  </AttrArray>
+  <ViewLinkAccessor
+    Name="Groups"
+    ViewLink="oracle.apps.hcm.groups.protectedModel.view.link.GroupsVOToGroupCriteriaVO"
+    Type="oracle.jbo.Row"
+    Reversed="true"
+    IsUpdateable="false"/>
+</ViewObject>
