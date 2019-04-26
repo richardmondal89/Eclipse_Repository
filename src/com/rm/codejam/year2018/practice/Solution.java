@@ -1,71 +1,46 @@
 package com.rm.codejam.year2018.practice;
+import java.io.*;
+import java.util.*;
 
-import java.util.Scanner;
-
-class CruiseControl {
+class Solution {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		try{
 		Scanner sc = new Scanner(System.in);
-		int T,N,D;
-		T = sc.nextInt();
-		for(int i=0;i<T;i++){
-			D = hasNext(sc);
-			N = hasNext(sc);
-			int K[] = new int[N];
-			int S[] = new int[N];
-			for(int j=0;j<N;j++){
-				K[j] = hasNext(sc);
-				S[j] = hasNext(sc);
-			}
-			//markCompleted(K,D);
-			int count=0;
-			while(true){
-				if(updatePosition(K,S,D)){
+		int t,a,b,n;
+		t= sc.nextInt();
+		for (int i=0;i<t;i++){
+			a =sc.nextInt();
+			b = sc.nextInt();
+			n = sc.nextInt();
+			int count=1;
+			int g;
+			String s;
+			while(count<=n){
+				g=(a+b+1)/2;
+				System.out.flush();
+				System.out.print(g);
+								
+				s = sc.next();
+				if("CORRECT".equals(s)){
 					break;
 				}
-				else{
-					count++;
+				else if("TOO_SMALL".equals(s)){
+					a = g+1;
+				}
+				else if("TOO_BIG".equals(s)){
+					b=g-1;
+				}
+				else if("WRONG_ANSWER".equals(s)){
+					System.exit(0);
 				}
 			}
-			System.out.println("Case #"+(i+1)+": "+(float)D/(float)count);
 		}
-		
+		}catch( Exception ex){
+		    ex.printStackTrace();
+		}
+
 	}
 
-	private static boolean updatePosition(int[] k, int[] s, int d) {
-		// TODO Auto-generated method stub
-		boolean flag = true;
-		for(int i=0;i<k.length;i++){
-			if(k[i]<d){
-				k[i] = k[i]+s[i];
-				flag = false;
-			}
-		}
-		if(flag)
-			return flag;
-		
-		for(int i=0;i<k.length;i++){
-			int dis = k[i];
-			for(int j=i+1;j<k.length && dis<=d;j++){
-				if(dis==k[j]){
-					if(s[i]>s[j]){
-						s[i] = s[j];
-					}
-					else{
-						s[j] = s[i];
-					}
-				}
-			}
-		}
-		
-			return flag;
-	}
-	
-	private static int hasNext(Scanner sc){
-		if(sc.hasNext())
-		return Integer.parseInt(sc.next());
-		else 
-			return 0;
-	}
 }

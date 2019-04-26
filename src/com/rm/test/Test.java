@@ -2,6 +2,7 @@ package com.rm.test;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -38,9 +39,13 @@ import java.util.function.Predicate;
 public class Test implements Comparator<String> {
 
 	public static void main(String[] args) {
-
+		String A  = null;
+		String B = "789";
+		System.out.println();
+		
+		System.out.println(A+B);
 		Date curDate = new Date();
-
+		MessageDigest msgDigest = null;
 		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 
 		String DateToStr = format.format(curDate);
